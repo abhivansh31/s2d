@@ -1,7 +1,8 @@
-import { Routes, Route } from 'react-router-dom'
-import NavBar from './components/NavBar'
-import Home from './components/Game'
-import Milestone from './components/Milestone'
+import React from 'react'; // Add this line
+import { Routes, Route } from 'react-router-dom';
+import NavBar from './components/NavBar';
+import Home from './components/Game';
+import Milestone from './components/Milestone';
 
 export default function App() {
   return (
@@ -12,5 +13,5 @@ export default function App() {
         <Route path="/milestones" element={<Milestone />} />
       </Routes>
     </div>
-  )
+  );
 }

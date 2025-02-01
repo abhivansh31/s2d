@@ -1,0 +1,103 @@
+/* styles.css */
+
+body {
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+    background-color: #242424;
+    color: rgba(255, 255, 255, 0.87);
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+nav {
+    padding: 1rem;
+    background-color: #2d3748;
+    /* bg-gray-800 */
+}
+
+.flex {
+    display: flex;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.text-xl {
+    font-size: 1.25rem;
+    /* Equivalent to Tailwind's text-xl */
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.bg-blue-600 {
+    background-color: #3182ce;
+    /* Equivalent to Tailwind's bg-blue-600 */
+}
+
+.bg-blue-700 {
+    background-color: #2b6cb0;
+    /* Equivalent to Tailwind's bg-blue-700 */
+}
+
+.px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.rounded {
+    border-radius: 0.25rem;
+    /* Equivalent to Tailwind's rounded */
+}
+
+.hover\:bg-blue-700:hover {
+    background-color: #2b6cb0;
+    /* Equivalent to Tailwind's hover:bg-blue-700 */
+}
+
+.outer_div {
+    padding: 2rem;
+}
+
+.inner_div {
+    background-color: #1a1a1a;
+    /* Equivalent to Tailwind's bg-gray-800 */
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    /* Equivalent to Tailwind's rounded */
+}
+
+.bg-gray-800 {
+    background-color: #2d3748;
+    /* Equivalent to Tailwind's bg-gray-800 */
+}
+
+.mt-8 {
+    margin-top: 2rem;
+    /* Equivalent to Tailwind's mt-8 */
+}
+
+.p-4 {
+    padding: 1rem;
+    /* Equivalent to Tailwind's p-4 */
+}
+
+.text-xl {
+    font-size: 1.25rem;
+    /* Equivalent to Tailwind's text-xl */
+}

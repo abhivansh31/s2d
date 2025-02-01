@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
-import { ACHIEVEMENT_CONTRACT_ABI } from '../../../smart_contracts/out/AchievementContract.sol/AchievementContract.json';
+import AchievementContractData from '../../../smart_contracts/out/AchievementContract.sol/AchievementContract.json';
+
+const ACHIEVEMENT_CONTRACT_ABI = AchievementContractData.abi; // Extract the ABI from the imported JSON
 
 export default function Milestones() {
     const [wins, setWins] = useState(0);
-    const [loading, setLoading] = useState(true); // State to manage loading status
-    const [error, setError] = useState(null); // State to manage error messages
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     // Initialize Contract
     const achievementContractAddress = import.meta.env.VITE_CONTRACT_ADDRESS_ACHIEVEMENT;
@@ -13,7 +15,6 @@ export default function Milestones() {
     useEffect(() => {
         const fetchWins = async () => {
             try {
-                // Check if Ethereum is available
                 if (!window.ethereum) {
                     throw new Error('Ethereum provider is not available');
                 }
@@ -31,28 +32,27 @@ export default function Milestones() {
                 setWins(userWins.toNumber());
             } catch (error) {
                 console.error('Error fetching wins:', error);
-                setError(error.message); // Set error message
+                setError(error.message);
             } finally {
-                setLoading(false); // Set loading to false after fetching
+                setLoading(false);
             }
         };
 
-        // Fetch wins only if the user has a selected address
         if (window.ethereum && window.ethereum.selectedAddress) {
             fetchWins();
         } else {
-            setLoading(false); // Set loading to false if no address is selected
+            setLoading(false);
         }
-    }, [achievementContractAddress]); // Dependency array includes contract address
+    }, [achievementContractAddress]);
 
     return (
         <div className="p-8">
             <div className="max-w-2xl mx-auto">
                 <h2 className="text-2xl mb-4">Your Progress</h2>
                 {loading ? (
-                    <p>Loading...</p> // Show loading message
+                    <p>Loading...</p>
                 ) : error ? (
-                    <p className="text-red-500">{error}</p> // Show error message
+                    <p className="text-red-500">{error}</p>
                 ) : (
                     <div className="bg-gray-800 p-6 rounded">
                         <p>Total Wins: {wins}</p>

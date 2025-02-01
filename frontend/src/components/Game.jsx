@@ -1,48 +1,35 @@
-import { useState } from 'react'
-import { ethers } from 'ethers'
-import { GAME_CONTRACT_ABI } from '../../../smart_contracts/out/GameContract.sol/GameContract.json'
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react'; // Import React
 
-export default function Home() {
-    const [selectedCard] = useState(null)
+export default function Navbar() {
+    const [walletAddress, setWalletAddress] = useState('');
 
-    // Initialize Contract
-    const gameContractAddress = import.meta.env.VITE_CONTRACT_ADDRESS_GAME
-    const provider = new ethers.providers.Web3Provider(window.ethereum)
-    const signer = provider.getSigner()
-    const gameContract = new ethers.Contract(
-        gameContractAddress,
-        GAME_CONTRACT_ABI,
-        signer
-    )
-
-    const playGame = async () => {
-        try {
-            const tx = await gameContract.playGame({
-                value: ethers.utils.parseEther('0.001')
-            })
-            await tx.wait()
-        } catch (error) {
-            console.error('Game error:', error)
+    const connectWallet = async () => {
+        if (window.ethereum) {
+            try {
+                const accounts = await window.ethereum.request({
+                    method: 'eth_requestAccounts'
+                });
+                setWalletAddress(accounts[0]);
+            } catch (error) {
+                console.error(error);
+            }
         }
     }
 
     return (
-        <div className="outer_div">
-            <div className="inner_div">
+        <nav>
+            <div className="flex justify-between items-center">
+                <h1 className="text-xl font-bold">Card Game</h1>
                 <button
-                    onClick={playGame}
-                    className="bg-green-600 px-6 py-3 rounded-lg hover:bg-green-700"
+                    onClick={connectWallet}
+                    className="bg-blue-600 px-4 py-2 rounded hover:bg-blue-700"
                 >
-                    Play Game (0.001 ETH)
+                    {walletAddress ?
+                        `${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}` :
+                        'Connect Wallet'}
                 </button>
-
-                {selectedCard && (
-                    <div className="mt-8 p-4 bg-gray-800 rounded">
-                        <h3 className="text-xl">Your Card: {selectedCard.name}</h3>
-                        <p>Power: {selectedCard.power}</p>
-                    </div>
-                )}
             </div>
-        </div>
-    )
+        </nav>
+    );
 }

@@ -1,23 +1,24 @@
-import { useState } from 'react'
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react'; // Import React
 
-export default function Navbar() {
-    const [walletAddress, setWalletAddress] = useState('')
+export default function NavBar() {
+    const [walletAddress, setWalletAddress] = useState('');
 
     const connectWallet = async () => {
         if (window.ethereum) {
             try {
                 const accounts = await window.ethereum.request({
                     method: 'eth_requestAccounts'
-                })
-                setWalletAddress(accounts[0])
+                });
+                setWalletAddress(accounts[0]);
             } catch (error) {
-                console.error(error)
+                console.error(error);
             }
         }
     }
 
     return (
-        <nav className="p-4 bg-gray-800">
+        <nav>
             <div className="flex justify-between items-center">
                 <h1 className="text-xl font-bold">Card Game</h1>
                 <button
@@ -30,5 +31,5 @@ export default function Navbar() {
                 </button>
             </div>
         </nav>
-    )
+    );
 }
